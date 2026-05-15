@@ -1,22 +1,33 @@
-"""Faça um programa que leia o ano de nascimento de um jovem e informe, de acordo com sua idade, se ele ainda vai se alistar ao serviço militar, se a hora de se alistar ou seja, passou do tempo do alistamento.
-Seu programa também deverá mostrar o tempo que falta ou que passou do prazo."""
+"""
+Faça um programa que leia o ano de nascimento de um jovem e informe, de acordo com sua idade, se ele ainda vai se alistar ao serviço militar, se a hora de se alistar ou seja, passou do tempo do alistamento.
 
-ano_nascimento = int(input("Ínforme o seu ano de nascimento: "))
+Seu programa também deverá mostrar o tempo que falta ou que passou do prazo.
+"""
 
-ano_atual = 2026
-idade_alistamento = 18
-idade = ano_atual - ano_nascimento
-periodo = idade - idade_alistamento
+from datetime import date
 
-print(f"Quem nasceu em {ano_nascimento} tem {idade} anos em {ano_atual}")
-print(f"Seu alistamento será em {idade}")
+nasc = int(input("Informe o ano de nascimento: "))
 
 
-if periodo < 0:
-    print(f"Ainda faltam {periodo} anos para oalistamento")
+atual = date.today().year
+idade = atual - nasc
+alistamento = nasc + 18
 
-elif periodo > 0:
-    print(f"O periodo do seu alistamento esta atrasado em {periodo} anos.")
+print(f"Quem nasceu em {nasc} tem {idade} anos em {atual}.")
+
+if alistamento > atual:
+    print(f"Ainda faltam {alistamento - atual} anos para o seu alistamento.")
+    print(f'Seu alistamento será em {alistamento}.')
+
+elif alistamento < atual:
+    print(f"Você já deveria ter se alistado há {atual - alistamento} anos.")
+    print(f'Seu alistamento foi em {alistamento}.')
+
+elif alistamento == atual:
+    print("Você já pode se alistar.")
 
 else:
-    print("Você já pode se alistar.")
+    print("Data inválida.")
+
+          
+
